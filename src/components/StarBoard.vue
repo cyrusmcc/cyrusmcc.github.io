@@ -175,5 +175,7 @@ function handleSelectStar(textureUrl: string, tintColorIndex: number, starProp: 
     background: $black;
     width: 100%;
     height: 100%;
+    position: absolute;
+    z-index: 0;
 }
 </style>

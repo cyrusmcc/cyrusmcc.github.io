@@ -6,27 +6,23 @@
             <span class="role">Fullstack Developer</span>
         </div>
     </div>
-</template>
-  
+</template>  
 <script setup lang="ts">
 import Portrait from "./Portrait.vue";
-
-</script>
-  
+</script>  
 <style scoped lang="scss">
 .personInfo {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    height: fit-content;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-    position: absolute;
+    width: fit-content;
 
     .id {
+        align-items: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
         margin-top: 2rem;
 
