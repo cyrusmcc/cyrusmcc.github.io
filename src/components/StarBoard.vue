@@ -30,7 +30,7 @@ const props = defineProps({
 
 /* Data */
 const colors: number[] = [0xFDF5EF, 0x83CDC5, 0x47A3C6, 0x17C778, 0xFF91BD, 0xF8B948, 0xFD5621]
-const imgArray: string[] = ['4ptstar.png', '8ptstar.png', 'comet.png', 'hllwstar.png']
+const imgArray: string[] = ['white1.svg', 'white2.svg', 'white3.svg', 'white4.svg']
 const spriteArray: SpriteProp[] = new Array();
 const stars = new PIXI.Container();
 
@@ -131,12 +131,8 @@ function newStar(app: PIXI.Application,) {
 
     starSprite.x = Math.random() * app.screen.width;
     starSprite.y = Math.random() * app.screen.height;
-    if (imgUrl === '4ptstar.png' || imgUrl === 'hllwstar.png') {
-        starSprite.scale.set(0.02 + Math.random() * 0.1);
-    }
-    else {
-        starSprite.scale.set(0.01 + Math.random() * 0.06);
-    }
+    starSprite.rotation = Math.random() * Math.PI;
+    starSprite.scale.set(0.4 + Math.random() * 0.06);
 
     const starProp: SpriteProp = {
         sprite: starSprite,

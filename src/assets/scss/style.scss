@@ -36,17 +36,11 @@ $color6: #f8b948;
 $color7: #fd5621;
 
 @font-face {
-    font-family: 'Newake';
-    src: url('/public/fonts/Newake.otf') format('opentype');
+    font-family: 'Manrope';
+    src: url('/public/fonts/Manrope.ttf') format('truetype');
 }
 
-@font-face {
-    font-family: 'Techna-Sans';
-    src: url('/public/fonts/TechnaSans-Regular.otf') format('opentype');
-}
-
-$techna: 'Techna-Sans';
-$Newake: 'Newake', sans-serif;
+$manrope: 'Manrope', sans-serif;
 
 // spacing
 @function spacing($size) {
@@ -119,6 +113,7 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    color: $gray100;
 }
 
 textArea {
@@ -186,22 +181,6 @@ p {
     direction: ltr;
     background: linear-gradient(330deg, #FDF5EF, #83CDC5, #47A3C6, #17C778, #FF91BD, #F8B948, #FD5621);
     background-size: 200% 200%;
-}
-
-.buttonAlertContainer {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    margin-top: spacing(1);
-    width: 100%;
-}
-
-.alert {
-    color: #83CDC5;
-    display: block;
-    font-family: 'ubuntu', sans-serif;
-    font-size: $fontSize1;
-    margin-bottom: spacing(0.5);
 }
 
 .icon {
