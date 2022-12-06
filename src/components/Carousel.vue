@@ -6,40 +6,40 @@
                 <div class="directionArrowRight" @click="handleRightClick">&gt;</div>
             </div>
             <div class="carouselDots" v-if="images.length <= 5">
-                <div class="carouselDot" v-for="(image, i) in images" :key="i" @click="handleDotClick(i)"
-                    :style="[i == state.index ? { opacity: 1 } : { opacity: 0.5 }]"></div>
+                <div class="carouselDot" v-for="(image, i) in images" :key="i" @click="handleDotClick(i)" :style="[i == state.index ? {
+                    opacity: 1
+                } : {
+                    opacity: 0.5
+                }]"></div>
             </div>
-            <img :src="images[state.index]" alt="carousel-image" />
+            <img :src="getImageUrl(images[state.index])" alt="carousel-image" />
         </div>
     </div>
 </template>
-
 <script setup lang="ts">
 import { reactive, onMounted } from 'vue';
-
+import { getImageUrl } from '../utils/globalFunctions';
 const state = reactive({
+    arrows: true,
     index: 0,
     length: 0,
-    arrows: true,
 });
-
 const props = defineProps({
-    images: {
-        type: null,
-        required: true,
-    },
     arrows: {
-        type: Boolean,
-        required: false,
         default: true,
+        required: false,
+        type: Boolean,
     },
     autoplay: {
-        type: Boolean,
-        required: false,
         default: false,
+        required: false,
+        type: Boolean,
+    },
+    images: {
+        required: true,
+        type: null,
     },
 })
-
 onMounted(() => {
     state.length = props.images.length;
     if (props.autoplay) {
@@ -48,80 +48,77 @@ onMounted(() => {
         }, 5000);
     }
 })
-
 const handleLeftClick = () => {
     state.index = (state.index - 1 + state.length) % state.length;
 }
-
 const handleRightClick = () => {
     state.index = (state.index + 1) % state.length;
 }
-
 const handleDotClick = (i: number) => {
     state.index = i;
 }
-
 </script>
-
 <style scoped lang="scss">
 img {
-    width: 100%;
     height: 100%;
     object-fit: cover;
+    width: 100%;
 }
 
 .homeContainer {
-    height: 100%;
+    border-radius: 9px;
+    height: 15rem;
+    overflow: hidden;
     width: 100%;
 }
 
 .carousel {
     height: 100%;
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
 .directionArrowLeft {
+    color: #fff;
+    cursor: pointer;
+    font-size: 3rem;
+    margin-left: 10px;
+    opacity: 0.7;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 3rem;
-    margin-left: 10px;
-    color: #fff;
-    opacity: 0.7;
-    cursor: pointer;
     z-index: 1;
 }
 
 .directionArrowRight {
+    color: #fff;
+    cursor: pointer;
+    font-size: 3rem;
+    margin-right: 10px;
+    opacity: 0.7;
     position: absolute;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
-    right: 0;
-    margin-right: 10px;
-    font-size: 3rem;
-    color: #fff;
-    opacity: 0.7;
-    cursor: pointer;
     z-index: 1;
 }
 
 .carouselDots {
-    position: absolute;
     bottom: 10px;
-    left: 0;
-    right: 0;
     display: flex;
     justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
     z-index: 1;
 }
 
 .carouselDot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin: 0 5px;
     background-color: #fff;
+    border-radius: 50%;
     cursor: pointer;
+    height: 10px;
+    margin: 0 5px;
+    width: 10px;
 }
 </style>

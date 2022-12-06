@@ -7,7 +7,8 @@
             <div class="directionArrowRight" @click="handleRightClick" v-if="items.length > length">
                 &gt;
             </div>
-            <div class="sideScrollItem" v-for="(item, i) in itemsSubArr" :key="i">
+            <div class="sideScrollItem" v-for="(item, i) in itemsSubArr" :key="i" @click="emit('changeActive', i)"
+                :style="[active == i ? { opacity: 1 } : { opacity: 0.6 }]">
                 <img class="itemImg" :src="getImageUrl(item.imgUrl)" alt="carousel-image" />
             </div>
         </div>
@@ -29,7 +30,16 @@ const props = defineProps({
         type: Array,
         default: [],
     },
+    active: {
+        type: Number,
+        default: 0,
+    },
 })
+
+const emit = defineEmits<{
+    (e: 'changeActive', index: number): void
+}>()
+
 onMounted(() => {
     state.itemList = props.items;
 })

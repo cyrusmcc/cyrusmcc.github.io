@@ -123,7 +123,7 @@ function createStars(app: PIXI.Application, stars: PIXI.Container, spriteArray: 
 }
 
 function newStar(app: PIXI.Application,) {
-    const imgUrl = imgArray[Math.floor(Math.random() * imgArray.length)];
+    const imgUrl = 'dots/' + imgArray[Math.floor(Math.random() * imgArray.length)];
     const starSprite = PIXI.Sprite.from(getImageUrl(imgUrl));
 
     const tintColorIndex = Math.floor(Math.random() * colors.length);

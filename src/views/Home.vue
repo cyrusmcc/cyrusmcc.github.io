@@ -5,20 +5,20 @@
       <div class="linkBlobs">
         <div class="blobContainer">
           <span @click="scrollToSelection(1)">About me</span>
-          <img :src="getImageUrl('white2.svg')" alt="link to about me" :style="{
+          <img :src="getImageUrl('dots/white2.svg')" alt="link to about me" :style="{
             filter: 'brightness(0) saturate(100%) invert(54%) sepia(82%) saturate(414%) hue-rotate(101deg) brightness(97%) contrast(98%)'
           }" @click="scrollToSelection(1)" class="blob">
         </div>
         <div class="blobContainer">
           <span @click="scrollToSelection(2)">My projects</span>
-          <img :src="getImageUrl('white3.svg')" alt="link to projects" :style="{
+          <img :src="getImageUrl('dots/white3.svg')" alt="link to projects" :style="{
             filter: 'brightness(0) saturate(100%) invert(89%) sepia(13%) saturate(6189%) hue-rotate(289deg) brightness(101%) contrast(102%)',
             transform: 'rotate(-10deg)'
           }" @click="scrollToSelection(2)" class="blob">
         </div>
         <div class="blobContainer">
           <span @click="scrollToSelection(3)">More</span>
-          <img :src="getImageUrl('white7.svg')" alt="link to contact" :style="{
+          <img :src="getImageUrl('dots/white7.svg')" alt="link to contact" :style="{
             filter: 'brightness(0) saturate(100%) invert(62%) sepia(26%) saturate(995%) hue-rotate(151deg) brightness(91%) contrast(81%)'
           }" @click="scrollToSelection(3)" class="blob">
         </div>
@@ -29,7 +29,7 @@
       <div class="topRow">
         <div class="blobContainer">
           <span>About me</span>
-          <img :src="getImageUrl('white2.svg')" alt="about me" :style="{
+          <img :src="getImageUrl('dots/white2.svg')" alt="about me" :style="{
             filter: 'brightness(0) saturate(100%) invert(54%) sepia(82%) saturate(414%) hue-rotate(101deg) brightness(97%) contrast(98%)'
           }" class="blob">
         </div>
@@ -42,7 +42,7 @@
       <div class="topRow">
         <div class="blobContainer">
           <span>Projects</span>
-          <img :src="getImageUrl('white2.svg')" alt="about me" :style="{
+          <img :src="getImageUrl('dots/white2.svg')" alt="about me" :style="{
             filter: 'brightness(0) saturate(100%) invert(89%) sepia(13%) saturate(6189%) hue-rotate(289deg) brightness(101%) contrast(102%)',
             transform: 'rotate(-10deg)'
           }" class="blob">
@@ -53,7 +53,7 @@
       </div>
     </section>
     <div class="fullpage-select">
-      <img :src="getImageUrl('white4.svg')" alt="select page menu option" class="fullpage-option"
+      <img :src="getImageUrl('dots/white4.svg')" alt="select page menu option" class="fullpage-option"
         v-for="(offset, index) in state.offsets" :key="index" :title="'Go to section ' + (state.index + 1)" :class="{
           active: state.activeSelection == index
         }" @click="scrollToSelection(index)">
@@ -211,7 +211,7 @@ const touchMove = (e: TouchEvent) => {
   .aboutMe,
   .projects {
     .topRow {
-      height: 20%;
+      height: 15%;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -244,6 +244,7 @@ const touchMove = (e: TouchEvent) => {
     position: relative;
     width: fit-content;
     font-weight: bold;
+    text-shadow: 0px 2px 2px #000000;
   }
 
   .blobContainer>span {
