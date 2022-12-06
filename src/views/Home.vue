@@ -4,30 +4,54 @@
       <personInfo></personInfo>
       <div class="linkBlobs">
         <div class="blobContainer">
-          <span>About me</span>
+          <span @click="scrollToSelection(1)">About me</span>
           <img :src="getImageUrl('white2.svg')" alt="link to about me" :style="{
             filter: 'brightness(0) saturate(100%) invert(54%) sepia(82%) saturate(414%) hue-rotate(101deg) brightness(97%) contrast(98%)'
-          }" @click="scrollToSelection(0)">
+          }" @click="scrollToSelection(1)" class="blob">
         </div>
         <div class="blobContainer">
-          <span>My projects</span>
+          <span @click="scrollToSelection(2)">My projects</span>
           <img :src="getImageUrl('white3.svg')" alt="link to projects" :style="{
             filter: 'brightness(0) saturate(100%) invert(89%) sepia(13%) saturate(6189%) hue-rotate(289deg) brightness(101%) contrast(102%)',
             transform: 'rotate(-10deg)'
-          }" @click="scrollToSelection(1)">
+          }" @click="scrollToSelection(2)" class="blob">
         </div>
         <div class="blobContainer">
-          <span>More</span>
+          <span @click="scrollToSelection(3)">More</span>
           <img :src="getImageUrl('white7.svg')" alt="link to contact" :style="{
             filter: 'brightness(0) saturate(100%) invert(62%) sepia(26%) saturate(995%) hue-rotate(151deg) brightness(91%) contrast(81%)'
-          }" @click="scrollToSelection(2)">
+          }" @click="scrollToSelection(3)" class="blob">
         </div>
         <div></div>
       </div>
     </section>
     <section class="fullpage aboutMe">
+      <div class="topRow">
+        <div class="blobContainer">
+          <span>About me</span>
+          <img :src="getImageUrl('white2.svg')" alt="about me" :style="{
+            filter: 'brightness(0) saturate(100%) invert(54%) sepia(82%) saturate(414%) hue-rotate(101deg) brightness(97%) contrast(98%)'
+          }" class="blob">
+        </div>
+      </div>
+      <div class="content">
+        <aboutme></aboutme>
+      </div>
     </section>
-    <section class="fullpage project"></section>
+    <section class="fullpage projects">
+      <div class="topRow">
+        <div class="blobContainer">
+          <span>Projects</span>
+          <img :src="getImageUrl('white2.svg')" alt="about me" :style="{
+            filter: 'brightness(0) saturate(100%) invert(89%) sepia(13%) saturate(6189%) hue-rotate(289deg) brightness(101%) contrast(102%)',
+            transform: 'rotate(-10deg)'
+          }" class="blob">
+        </div>
+      </div>
+      <div class="content">
+        <projects></projects>
+      </div>
+    </section>
     <div class="fullpage-select">
       <img :src="getImageUrl('white4.svg')" alt="select page menu option" class="fullpage-option"
         v-for="(offset, index) in state.offsets" :key="index" :title="'Go to section ' + (state.index + 1)" :class="{
@@ -40,12 +64,11 @@
 <script setup lang="ts">
 import personInfo from "../components/PersonInfo.vue";
 import starBoard from "../components/StarBoard.vue";
-import {
-  getImageUrl
-} from "../utils/globalFunctions";
-import {
-  onMounted, onUnmounted, reactive
-} from "vue";
+import aboutme from "../components/AboutMe.vue";
+import projects from "../components/Projects.vue";
+import { getImageUrl } from "../utils/globalFunctions";
+import { onMounted, onUnmounted, reactive } from "vue";
+
 /* Data */
 let state = reactive({
   activeSelection: 0,
@@ -119,8 +142,6 @@ const scrollToSelection = (index: number, force = false) => {
   if (state.inMove && !force) return false;
   state.activeSelection = index;
   state.inMove = true;
-  console.log(document.getElementsByTagName('section'))
-  console.log(index)
   document.getElementsByTagName('section')[index].scrollIntoView({
     behavior: 'smooth',
   });
@@ -170,51 +191,81 @@ const touchMove = (e: TouchEvent) => {
   .linkBlobs {
     column-gap: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: fit-content;
     justify-content: center;
     width: fit-content;
-    font-weight: bold;
     z-index: 0;
     margin-top: 20px;
-
-    .blobContainer {
-      animation-delay: 0;
-      animation-direction: alternate;
-      animation-duration: 4s;
-      animation-iteration-count: infinite;
-      animation-name: blobAnimation;
-      animation-timing-function: ease-in-out;
-      position: relative;
-      width: fit-content;
-    }
+    row-gap: 5px;
 
     .blobContainer>span {
-      left: 50%;
-      position: absolute;
-      text-align: center;
-      top: 35%;
-      transform: translate(-50%, 0);
-      white-space: nowrap;
-      width: fit-content;
-      z-index: 1;
       cursor: pointer;
     }
 
     .blobContainer>img {
-      height: auto;
-      width: 8rem;
       cursor: pointer;
     }
   }
 
+  .aboutMe,
+  .projects {
+    .topRow {
+      height: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 95%;
+    }
+
+    .content {
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      width: 95%;
+    }
+  }
+
+  .blob {
+    z-index: 1;
+    height: auto;
+    width: 8rem;
+  }
+
+  .blobContainer {
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-name: blobAnimation;
+    animation-timing-function: ease-in-out;
+    position: relative;
+    width: fit-content;
+    font-weight: bold;
+  }
+
+  .blobContainer>span {
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    top: 35%;
+    transform: translate(-50%, 0);
+    white-space: nowrap;
+    width: fit-content;
+    z-index: 1;
+  }
+
   .fullpage-select {
     display: flex;
-    flex-direction: column;
-    left: 1rem;
+    flex-direction: row;
+    //left: 0.5rem;
     position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 0;
+    column-gap: 5px;
+    //top: 50%;
+    //transform: translateY(-50%);
     z-index: 1;
 
     .fullpage-option {
@@ -250,6 +301,14 @@ const touchMove = (e: TouchEvent) => {
 }
 
 @include screen-md {
-  .container {}
+  .container {
+    .linkBlobs {
+      flex-direction: row;
+    }
+
+    .fullpage-select {
+      left: 1rem;
+    }
+  }
 }
 </style>
