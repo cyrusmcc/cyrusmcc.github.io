@@ -30,7 +30,7 @@ const props = defineProps({
 
 /* Data */
 const colors: number[] = [0xFDF5EF, 0x83CDC5, 0x47A3C6, 0x17C778, 0xFF91BD, 0xF8B948, 0xFD5621]
-const imgArray: string[] = ['white1.svg', 'white2.svg', 'white3.svg', 'white4.svg']
+const imgArray: string[] = ['white1.svg', 'white2.svg', 'white3.svg', 'white4.svg', 'white5.svg', 'white6.svg', 'white7.svg']
 const spriteArray: SpriteProp[] = new Array();
 const stars = new PIXI.Container();
 
