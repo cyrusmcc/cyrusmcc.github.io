@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import * as PIXI from 'pixi.js';
 import { onMounted, onUnmounted } from "vue";
-import { getImageUrl } from "@/utils/globalFunctions";
+import { getImageUrl } from "../utils/globalFunctions";
 
 /* Types */
 type SpriteProp = {
