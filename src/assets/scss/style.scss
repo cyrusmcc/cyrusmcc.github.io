@@ -27,6 +27,8 @@ $fontSize9: 48px;
 $fontSize10: 60px;
 $fontSize11: 72px;
 
+$textShadow: 0px 2px 2px #000000;
+
 $color1: #fdf5ef;
 $color2: #83cdc5;
 $color3: #47a3c6;
@@ -192,6 +194,43 @@ p {
 .icon:hover {
     transform: translate(-0.05em, -0.05em);
     box-shadow: 0.15em 0.15em;
+}
+
+.floatAnim {
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-name: floatKeyframe;
+    animation-timing-function: ease-in-out;
+}
+
+.blobContainer {
+    position: relative;
+    width: fit-content;
+    font-weight: bold;
+    text-shadow: 0px 2px 2px #000000;
+    margin-top: 10px;
+}
+
+.blob {
+    z-index: 1;
+    height: auto;
+    width: 8rem;
+}
+
+@keyframes floatKeyframe {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-3px) scale(1.03);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
 }
 
 @keyframes breathe {

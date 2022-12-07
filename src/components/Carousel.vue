@@ -1,11 +1,11 @@
 <template>
     <div class="homeContainer">
         <div class="carousel">
-            <div class="directionArrows" v-if="arrows">
+            <div class="directionArrows" v-if="state.arrows">
                 <div class="directionArrowLeft" @click="handleLeftClick">&lt;</div>
                 <div class="directionArrowRight" @click="handleRightClick">&gt;</div>
             </div>
-            <div class="carouselDots" v-if="images.length <= 5">
+            <div class="carouselDots" v-if="(images.length <= 5 && images.length > 1)">
                 <div class="carouselDot" v-for="(image, i) in images" :key="i" @click="handleDotClick(i)" :style="[i == state.index ? {
                     opacity: 1
                 } : {
@@ -17,12 +17,11 @@
     </div>
 </template>
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue';
+import { reactive, onMounted, watch } from 'vue';
 import { getImageUrl } from '../utils/globalFunctions';
 const state = reactive({
     arrows: true,
     index: 0,
-    length: 0,
 });
 const props = defineProps({
     arrows: {
@@ -41,18 +40,29 @@ const props = defineProps({
     },
 })
 onMounted(() => {
-    state.length = props.images.length;
     if (props.autoplay) {
         setInterval(() => {
             handleRightClick();
         }, 5000);
     }
 })
+
+watch(() => props.images, (newVal) => {
+    if (props.arrows == false || newVal.length == 1) {
+        state.arrows = false;
+    }
+    else {
+        state.arrows = true;
+    }
+    state.index = 0;
+})
+
+// Methods
 const handleLeftClick = () => {
-    state.index = (state.index - 1 + state.length) % state.length;
+    state.index = state.index == 0 ? props.images.length - 1 : state.index - 1;
 }
 const handleRightClick = () => {
-    state.index = (state.index + 1) % state.length;
+    state.index = state.index == props.images.length - 1 ? 0 : state.index + 1;
 }
 const handleDotClick = (i: number) => {
     state.index = i;
@@ -67,9 +77,10 @@ img {
 
 .homeContainer {
     border-radius: 9px;
-    height: 15rem;
+    height: 20rem;
     overflow: hidden;
     width: 100%;
+    max-width: 40rem;
 }
 
 .carousel {

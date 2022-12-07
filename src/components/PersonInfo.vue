@@ -18,6 +18,7 @@ import Portrait from "./Portrait.vue";
     height: fit-content;
     justify-content: center;
     width: fit-content;
+    text-shadow: $textShadow;
 
     .id {
         align-items: center;

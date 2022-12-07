@@ -1,5 +1,6 @@
 <template>
     <div class="sideScrollContainer">
+        <h4 class="sideScrollLabel">{{ title }}</h4>
         <div class="itemList">
             <div class="directionArrowLeft" @click="handleLeftClick" v-if="items.length > length">
                 &lt;
@@ -8,7 +9,7 @@
                 &gt;
             </div>
             <div class="sideScrollItem" v-for="(item, i) in itemsSubArr" :key="i" @click="emit('changeActive', i)"
-                :style="[active == i ? { opacity: 1 } : { opacity: 0.6 }]">
+                :style="[active == i ? { opacity: 1 } : { opacity: 0.4 }]">
                 <img class="itemImg" :src="getImageUrl(item.imgUrl)" alt="carousel-image" />
             </div>
         </div>
@@ -33,6 +34,10 @@ const props = defineProps({
     active: {
         type: Number,
         default: 0,
+    },
+    title: {
+        type: String,
+        default: '',
     },
 })
 
@@ -76,6 +81,7 @@ const getImg = (imgUrl: Blob) => {
     margin: 45px 0 0 0;
     padding-left: 5px;
     width: 100%;
+    display: none;
 }
 
 .directionArrowLeft {
@@ -142,5 +148,11 @@ const getImg = (imgUrl: Blob) => {
     height: auto;
     object-fit: cover;
     width: 100%;
+}
+
+@include screen-md {
+    .sideScrollLabel {
+        display: block;
+    }
 }
 </style>

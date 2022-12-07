@@ -1,17 +1,19 @@
 <template>
-    <div class="panelOne">
-        <sideScrollGallery :items="state.projects" :length="4" title="Projects" :active="state.activeProject"
-            @change-active="updateActive">
-        </sideScrollGallery>
-        <carousel :arrows="true" :autoplay="true" :images="state.projects[state.activeProject].imgs"></carousel>
-    </div>
-    <div class="panelTwo">
-        <div class="projectTitle">
-            {{ state.projects[state.activeProject].title }}
-            <div></div>
+    <div class="panelContainer">
+        <div class="panelOne">
+            <sideScrollGallery :items="state.projects" :length="4" :title="'Other projects'"
+                :active="state.activeProject" @change-active="updateActive">
+            </sideScrollGallery>
+            <carousel :arrows="true" :autoplay="false" :images="state.projects[state.activeProject].imgs"></carousel>
         </div>
-        <div class="projectDescription">
-            {{ state.projects[state.activeProject].description }}
+        <div class="panelTwo">
+            <div class="projectTitle">
+                {{ state.projects[state.activeProject].title }}
+                <div></div>
+            </div>
+            <div class="projectDescription scrollContainer">
+                {{ state.projects[state.activeProject].description }}
+            </div>
         </div>
     </div>
 </template>
@@ -26,7 +28,7 @@ const state = reactive({
         {
             imgUrl: "projects/doodalioprev.png",
             imgs: [],
-            title: "doodal.io",
+            title: "doodal.io - WIP",
             description: "This is a project",
             link: "",
             repo: "",
@@ -55,7 +57,10 @@ const state = reactive({
         },
         {
             imgUrl: "projects/nmtrailsprev.png",
-            imgs: [],
+            imgs: [
+                'projects/nmtrails1.png',
+                'projects/nmtrails2.png',
+            ],
             title: "NMTrails",
             description: "Full stack team based project utilizing NPS & NFS open geoJSON datasets which allows users to search, filter, and rate hiking trails in New Mexico. NMTrails was developed for an Adobe sponsored app contest which encourages students to build mobile applications which benefit their communities. Spring Boot was utilized on the backend to develop REST APIs alongside PostgreSQL for data storage. Our client was web-based and built as an SPA using Vue.js",
             link: "",
@@ -72,29 +77,63 @@ const updateActive = (index: number) => {
 </script>
 
 <style scoped lang="scss">
-.panelOne {
+.panelContainer {
     width: 100%;
-}
-
-.panelTwo {
-    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 1rem;
+    margin-top: 10px;
 
-    .projectTitle {
-        font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        border-bottom: 3px solid $color5;
-        box-sizing: border-box;
+    .panelOne {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
     }
 
-    .projectDescription {
-        text-align: justify;
-        hyphens: auto;
+    .panelTwo {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-shadow: $textShadow;
+
+        .projectTitle {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 10px 0 1rem 0;
+            border-bottom: 3px solid $color5;
+            box-sizing: border-box;
+        }
+
+        .projectDescription {
+            text-align: justify;
+            hyphens: auto;
+            max-width: 35rem;
+        }
+
+    }
+}
+
+@include screen-md {
+    .panelContainer {
+        flex-direction: row;
+
+        .panelOne {
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+            width: 50%;
+        }
+
+        .panelTwo {
+            padding: 0 spacing(2) 0 spacing(2);
+            width: 50%;
+
+            .projectTitle {
+                margin-bottom: 10px;
+            }
+        }
     }
 
 }

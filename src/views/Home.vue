@@ -3,20 +3,20 @@
     <section class="fullpage title">
       <personInfo></personInfo>
       <div class="linkBlobs">
-        <div class="blobContainer">
+        <div class="blobContainer floatAnim">
           <span @click="scrollToSelection(1)">About me</span>
           <img :src="getImageUrl('dots/white2.svg')" alt="link to about me" :style="{
             filter: 'brightness(0) saturate(100%) invert(54%) sepia(82%) saturate(414%) hue-rotate(101deg) brightness(97%) contrast(98%)'
           }" @click="scrollToSelection(1)" class="blob">
         </div>
-        <div class="blobContainer">
+        <div class="blobContainer floatAnim">
           <span @click="scrollToSelection(2)">My projects</span>
           <img :src="getImageUrl('dots/white3.svg')" alt="link to projects" :style="{
             filter: 'brightness(0) saturate(100%) invert(89%) sepia(13%) saturate(6189%) hue-rotate(289deg) brightness(101%) contrast(102%)',
             transform: 'rotate(-10deg)'
           }" @click="scrollToSelection(2)" class="blob">
         </div>
-        <div class="blobContainer">
+        <div class="blobContainer floatAnim">
           <span @click="scrollToSelection(3)">More</span>
           <img :src="getImageUrl('dots/white7.svg')" alt="link to contact" :style="{
             filter: 'brightness(0) saturate(100%) invert(62%) sepia(26%) saturate(995%) hue-rotate(151deg) brightness(91%) contrast(81%)'
@@ -27,11 +27,11 @@
     </section>
     <section class="fullpage aboutMe">
       <div class="topRow">
-        <div class="blobContainer">
+        <div class="blobContainer floatAnim">
           <span>About me</span>
           <img :src="getImageUrl('dots/white2.svg')" alt="about me" :style="{
             filter: 'brightness(0) saturate(100%) invert(54%) sepia(82%) saturate(414%) hue-rotate(101deg) brightness(97%) contrast(98%)'
-          }" class="blob">
+          }" class="blob medium">
         </div>
       </div>
       <div class="content">
@@ -40,12 +40,12 @@
     </section>
     <section class="fullpage projects">
       <div class="topRow">
-        <div class="blobContainer">
+        <div class="blobContainer floatAnim">
           <span>Projects</span>
           <img :src="getImageUrl('dots/white2.svg')" alt="about me" :style="{
             filter: 'brightness(0) saturate(100%) invert(89%) sepia(13%) saturate(6189%) hue-rotate(289deg) brightness(101%) contrast(102%)',
             transform: 'rotate(-10deg)'
-          }" class="blob">
+          }" class="blob medium">
         </div>
       </div>
       <div class="content">
@@ -178,6 +178,7 @@ const touchMove = (e: TouchEvent) => {
   overflow: hidden;
   position: relative;
   width: 100%;
+  max-width: 1280px;
 
   .fullpage {
     display: flex;
@@ -210,8 +211,10 @@ const touchMove = (e: TouchEvent) => {
 
   .aboutMe,
   .projects {
+    justify-content: flex-start;
+
     .topRow {
-      height: 15%;
+      height: fit-content;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -219,32 +222,23 @@ const touchMove = (e: TouchEvent) => {
     }
 
     .content {
-      height: 80%;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: space-evenly;
       align-items: center;
       width: 95%;
     }
   }
 
-  .blob {
-    z-index: 1;
-    height: auto;
-    width: 8rem;
+  .aboutMe {
+    .content {
+      height: 75%;
+    }
   }
 
-  .blobContainer {
-    animation-delay: 0;
-    animation-direction: alternate;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-name: blobAnimation;
-    animation-timing-function: ease-in-out;
-    position: relative;
-    width: fit-content;
-    font-weight: bold;
-    text-shadow: 0px 2px 2px #000000;
+  .medium {
+    width: 5.5rem;
   }
 
   .blobContainer>span {
@@ -287,29 +281,13 @@ const touchMove = (e: TouchEvent) => {
   }
 }
 
-@keyframes blobAnimation {
-  0% {
-    transform: translateY(0) scale(1);
-  }
-
-  50% {
-    transform: translateY(-3px) scale(1.03);
-  }
-
-  100% {
-    transform: translateY(0) scale(1);
-  }
-}
-
 @include screen-md {
   .container {
+
     .linkBlobs {
       flex-direction: row;
     }
 
-    .fullpage-select {
-      left: 1rem;
-    }
   }
 }
 </style>

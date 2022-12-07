@@ -144,28 +144,8 @@ function newStar(app: PIXI.Application,) {
 
     starSprite.anchor.set(0.5);
 
-    // Opt-in to interactivity
-    starSprite.interactive = true;
-
-    // Shows hand cursor
-    starSprite.buttonMode = true;
-
-    starSprite.on('pointerdown', () => {
-        handleSelectStar(imgUrl, tintColorIndex, starProp, app);
-    });
-
     spriteArray.push(starProp);
     stars.addChild(starSprite);
-}
-
-function handleSelectStar(textureUrl: string, tintColorIndex: number, starProp: SpriteProp, app: PIXI.Application) {
-    // when star is emmitted, display on text area w/ current texture
-    emit('selectStar', textureUrl, tintColorIndex);
-
-    // remove star from screen
-    stars.removeChild(starProp.sprite);
-    spriteArray.splice(spriteArray.indexOf(starProp), 1);
-    newStar(app);
 }
 
 </script>
