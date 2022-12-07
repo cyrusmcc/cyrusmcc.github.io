@@ -143,20 +143,22 @@ const scrollToSelection = (index: number, force = false) => {
   state.activeSelection = index;
   state.inMove = true;
   document.getElementsByTagName('section')[index].scrollIntoView({
-    behavior: 'smooth',
+   // behavior: 'smooth',
   });
   setTimeout(() => {
     state.inMove = false;
   }, state.inMoveDelay);
 };
 const touchStart = (e: TouchEvent) => {
-  e.preventDefault()
+  //e.preventDefault()
   state.touchStartY = e.touches[0].clientY;
 };
 const touchMove = (e: TouchEvent) => {
-  if (state.inMove) return false;
   e.preventDefault()
+  if (state.inMove) return false;
+  console.log(state.touchStartY)
   const touchEndY = e.changedTouches[0].clientY;
+  console.log(touchEndY)
   if (state.touchStartY < touchEndY) {
     moveDown();
   }
