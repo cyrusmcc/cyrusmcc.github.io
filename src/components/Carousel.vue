@@ -7,9 +7,9 @@
             </div>
             <div class="carouselDots" v-if="(images.length <= 5 && images.length > 1)">
                 <div class="carouselDot" v-for="(image, i) in images" :key="i" @click="handleDotClick(i)" :style="[i == state.index ? {
-                    opacity: 1
+                    backgroundColor: '#ff91bd'
                 } : {
-                    opacity: 0.5
+                    backgroundColor: '#fdf5ef'
                 }]"></div>
             </div>
             <img :src="getImageUrl(images[state.index])" alt="carousel-image" />
@@ -46,7 +46,6 @@ onMounted(() => {
         }, 5000);
     }
 })
-
 watch(() => props.images, (newVal) => {
     if (props.arrows == false || newVal.length == 1) {
         state.arrows = false;
@@ -56,7 +55,6 @@ watch(() => props.images, (newVal) => {
     }
     state.index = 0;
 })
-
 // Methods
 const handleLeftClick = () => {
     state.index = state.index == 0 ? props.images.length - 1 : state.index - 1;
@@ -77,10 +75,10 @@ img {
 
 .homeContainer {
     border-radius: 9px;
-    height: 20rem;
+    height: auto;
+    max-width: 40rem;
     overflow: hidden;
     width: 100%;
-    max-width: 40rem;
 }
 
 .carousel {
@@ -94,8 +92,8 @@ img {
     cursor: pointer;
     font-size: 3rem;
     margin-left: 10px;
-    opacity: 0.7;
     position: absolute;
+    text-shadow: $textShadow;
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
@@ -106,9 +104,9 @@ img {
     cursor: pointer;
     font-size: 3rem;
     margin-right: 10px;
-    opacity: 0.7;
     position: absolute;
     right: 0;
+    text-shadow: $textShadow;
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
@@ -125,11 +123,12 @@ img {
 }
 
 .carouselDot {
-    background-color: #fff;
+    background-color: $color5;
     border-radius: 50%;
     cursor: pointer;
     height: 10px;
     margin: 0 5px;
     width: 10px;
+    box-shadow: $shadow1;
 }
 </style>

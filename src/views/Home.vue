@@ -16,25 +16,24 @@
             transform: 'rotate(-10deg)'
           }" @click="scrollToSelection(2)" class="blob">
         </div>
+        <!-- blob for future content
         <div class="blobContainer floatAnim">
           <span @click="scrollToSelection(3)">More</span>
           <img :src="getImageUrl('dots/white7.svg')" alt="link to contact" :style="{
             filter: 'brightness(0) saturate(100%) invert(62%) sepia(26%) saturate(995%) hue-rotate(151deg) brightness(91%) contrast(81%)'
           }" @click="scrollToSelection(3)" class="blob">
         </div>
-        <div></div>
+         -->
       </div>
     </section>
     <section class="fullpage aboutMe">
-      <div class="topRow">
+      <div class="content">
         <div class="blobContainer floatAnim">
           <span>About me</span>
           <img :src="getImageUrl('dots/white2.svg')" alt="about me" :style="{
             filter: 'brightness(0) saturate(100%) invert(54%) sepia(82%) saturate(414%) hue-rotate(101deg) brightness(97%) contrast(98%)'
           }" class="blob medium">
         </div>
-      </div>
-      <div class="content">
         <aboutme></aboutme>
       </div>
     </section>
@@ -142,9 +141,16 @@ const scrollToSelection = (index: number, force = false) => {
   if (state.inMove && !force) return false;
   state.activeSelection = index;
   state.inMove = true;
-  document.getElementsByTagName('section')[index].scrollIntoView({
-   // behavior: 'smooth',
-  });
+
+  // if mobile no smooth scroll
+  if (window.innerWidth < 768) {
+    document.getElementsByTagName('section')[index].scrollIntoView();
+  }
+  else {
+    document.getElementsByTagName('section')[index].scrollIntoView({
+      behavior: 'smooth',
+    });
+  }
   setTimeout(() => {
     state.inMove = false;
   }, state.inMoveDelay);
@@ -191,6 +197,10 @@ const touchMove = (e: TouchEvent) => {
     @include flexCenter();
   }
 
+  .blobContainer {
+    align-self: flex-start;
+  }
+
   .linkBlobs {
     column-gap: 20px;
     display: flex;
@@ -224,20 +234,19 @@ const touchMove = (e: TouchEvent) => {
     }
 
     .content {
-      height: 100%;
+      height: fit-content;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
       width: 95%;
     }
   }
 
-  .aboutMe {
-    .content {
-      height: 75%;
-    }
+  .aboutMe .content {
+    justify-content: flex-start;
   }
+
 
   .medium {
     width: 5.5rem;
@@ -257,12 +266,9 @@ const touchMove = (e: TouchEvent) => {
   .fullpage-select {
     display: flex;
     flex-direction: row;
-    //left: 0.5rem;
     position: fixed;
     bottom: 0;
     column-gap: 5px;
-    //top: 50%;
-    //transform: translateY(-50%);
     z-index: 1;
 
     .fullpage-option {
@@ -288,6 +294,19 @@ const touchMove = (e: TouchEvent) => {
 
     .linkBlobs {
       flex-direction: row;
+    }
+    .blobContainer {
+      align-self: center;
+    }
+
+    .aboutMe {
+      .content {
+        justify-content: center;
+      }
+    }
+
+    .fullpage {
+      justify-content: center;
     }
 
   }

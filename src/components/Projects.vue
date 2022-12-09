@@ -11,6 +11,16 @@
                 {{ state.projects[state.activeProject].title }}
                 <div></div>
             </div>
+            <div class="linkContainer">
+                <a class="projectLink" v-if="state.projects[state.activeProject].link"
+                    :href="state.projects[state.activeProject].link" target="_blank">
+                    <span>Live site</span>
+                </a>
+                <a class="projectLink" v-if="state.projects[state.activeProject].repo"
+                    :href="state.projects[state.activeProject].repo" target="_blank">
+                    <span>Repository</span>
+                </a>
+            </div>
             <div class="projectDescription scrollContainer">
                 {{ state.projects[state.activeProject].description }}
             </div>
@@ -27,9 +37,12 @@ const state = reactive({
     projects: [
         {
             imgUrl: "projects/doodalioprev.png",
-            imgs: [],
+            imgs: [
+                "projects/doodalio1.png",
+                "projects/doodalio2.png",
+            ],
             title: "doodal.io - WIP",
-            description: "This is a project",
+            description: "doodal.io is a website which allows users to create and share doodles based on weekly prompts. Users can create doodles, view doodles created by others, and vote on their favorite doodles each week. HTML Canvas is utilized to create a drawing interface which allows users to draw and color doodles. Typescript alongside Vue.js is utilized to develop the client, and kotlin with Spring Boot is used for the backend.",
             link: "",
             repo: "",
         },
@@ -41,9 +54,9 @@ const state = reactive({
                 "projects/succyplant3.png",
             ],
             title: "SuccyPlant",
-            description: "SuccyPlant is a full stack project which implements JWT based user authorization and authentication, content generation which inlcudes the creation of blog and wiki style posts, pagination, and user discussion. SuccyPlant is an online repository containing pictures and information regarding the care and housing requirements of succulents, cactuses, and houseplants. Users can comment on & discuss plants, search and filter by a variety of topical tags, manage their accounts, and build custom plant lists. This project was developed utilizing Java and Spring Framework on the backend with data stored in MySQL. Javascript with Vue.js was used to develop a single page application for the frontend.",
+            description: "SuccyPlant is a full stack project which implements JWT based user auth, blog and wiki style posts creation, pagination, and user discussion. SuccyPlant is an online repository which provides information regarding the requirements of care for succulents, cactuses, and houseplants. Users can discuss plants through comments, search and filter by a variety of topical tags, and build custom plant lists. Java and Spring Framework was utilized on the backend with data stored in MySQL. Javascript with Vue.js was used to develop an SPA client on the frontend.",
             link: "",
-            repo: "",
+            repo: "https://github.com/cyrusmcc/SuccyPlant",
         },
         {
             imgUrl: "projects/strboardprev.png",
@@ -51,9 +64,9 @@ const state = reactive({
                 "projects/strboard1.png",
             ],
             title: "Strboard.io",
-            description: "Submit text to a pool of anonymous messages and explore what others have shared! No registration is required to submit an anonymous message on Strboard.io.",
+            description: "Strboard.io is an anonymous message sharing platform. Users can submit text to a pool of anonymous messages and explore what others have shared. This project incorporates a content moderation system which filters problematic content from the platform. Kotlin with Spring Boot was used to develop the backend, and TypeScript alongside Vue.js was used to develop the frontend.",
             link: "",
-            repo: "",
+            repo: "https://github.com/cyrusmcc/strboard-frontend",
         },
         {
             imgUrl: "projects/nmtrailsprev.png",
@@ -62,9 +75,9 @@ const state = reactive({
                 'projects/nmtrails2.png',
             ],
             title: "NMTrails",
-            description: "Full stack team based project utilizing NPS & NFS open geoJSON datasets which allows users to search, filter, and rate hiking trails in New Mexico. NMTrails was developed for an Adobe sponsored app contest which encourages students to build mobile applications which benefit their communities. Spring Boot was utilized on the backend to develop REST APIs alongside PostgreSQL for data storage. Our client was web-based and built as an SPA using Vue.js",
+            description: "A full stack team based project utilizing open geoJSON datasets which allows users to search, filter, and rate hiking trails in New Mexico. NMTrails was developed for an Adobe sponsored app contest which encourages students to build mobile applications which benefit their communities. Spring Boot was used to build the backend and develop REST APIs. PostgreSQL was used for data persistence, and our client was built using Vue.js",
             link: "",
-            repo: "",
+            repo: "https://github.com/cyrusmcc/nmtrails-frontend",
         },
     ],
     activeProject: 0,
@@ -99,6 +112,29 @@ const updateActive = (index: number) => {
         justify-content: flex-start;
         text-shadow: $textShadow;
 
+        .linkContainer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0 0 10px 0;
+
+            .projectLink {
+                color: $gray100;
+                text-decoration: none;
+                border: 1px solid $color5;
+                border-radius: 9px;
+                padding: 5px;
+                text-shadow: $textShadow;
+                
+            }
+
+            .projectLink:hover {
+                transform: scale(1.05);
+            }
+
+        }
+
         .projectTitle {
             font-size: 2rem;
             font-weight: 600;
@@ -131,7 +167,7 @@ const updateActive = (index: number) => {
             width: 50%;
 
             .projectTitle {
-                margin-bottom: 10px;
+                margin: 0 0 10px 0;
             }
         }
     }
