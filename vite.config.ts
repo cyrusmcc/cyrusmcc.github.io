@@ -6,18 +6,17 @@ import { join } from "path";
 export default defineConfig({
 
   plugins: [vue()],
-  base: "./",
+  base: "/",
   build: {
     rollupOptions: {
       external: [
+        '@pixi/mixin-get-{}-position'
       ]
     }
   },
   resolve: {
     alias: {
       "@": join(__dirname, "src"),
-      "eventsource-polyfill": join(__dirname, "node_modules/sockjs-client/lib/transport/browser/eventsource.js"),
-      "crypto": join(__dirname, "node_modules/sockjs-client/lib/utils/browser-crypto.js"),
     },
   },
   define: { "process.env": {}, "global": {}, },
@@ -29,15 +28,6 @@ export default defineConfig({
     }
   },
   server: {
-    host: true,
-    proxy: {
-      '/api': {
-        target: 'https://strboard.io',
-        changeOrigin: true,
-        secure: false,
-        ws: true,
-      }
-    }
   },
 
 });

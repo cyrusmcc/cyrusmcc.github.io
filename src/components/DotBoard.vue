@@ -36,9 +36,6 @@ const stars = new PIXI.Container();
 
 /* Mounted, Watcher ...*/
 onMounted(async () => {
-    if (!PIXI.utils.isWebGLSupported()) {
-        PIXI.utils.sayHello('');
-    }
 
     const app = new PIXI.Application({
         backgroundColor: 0x000000,
@@ -60,7 +57,9 @@ onUnmounted(() => {
 
 /* Methods */
 function buildApp(app: PIXI.Application) {
+    // @ts-ignore
     document.getElementById("canvasContainer")!.appendChild(app.view);
+    // @ts-ignore
     app.stage.addChild(stars);
 
     createStars(app, stars, spriteArray)

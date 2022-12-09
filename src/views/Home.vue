@@ -57,12 +57,12 @@
           active: state.activeSelection == index
         }" @click="scrollToSelection(index)">
     </div>
-    <starBoard :starCount="state.starCount" />
+    <dotBoard :starCount="state.starCount" />
   </div>
 </template>
 <script setup lang="ts">
 import personInfo from "../components/PersonInfo.vue";
-import starBoard from "../components/StarBoard.vue";
+import dotBoard from "../components/DotBoard.vue";
 import aboutme from "../components/AboutMe.vue";
 import projects from "../components/Projects.vue";
 import { getImageUrl } from "../utils/globalFunctions";
