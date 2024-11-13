@@ -1,6 +1,4 @@
-# file deploy.sh
 #!/usr/bin/env sh
-
 # abort on errors
 set -e
 
@@ -12,6 +10,9 @@ cd dist
 
 # if you are deploying to a custom domain
 echo 'www.cyrusmcc.com' > CNAME
+
+# create .nojekyll file to prevent Jekyll processing
+touch .nojekyll
 
 git init
 git add -A
