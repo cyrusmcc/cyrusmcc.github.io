@@ -8,7 +8,7 @@ demoURL: ""
 
 'my calicos' is a wiki & collection app for fans of the popular figurine line known as 'Calico Critters' (US), 'Sylvanian Families' (JP/UK), or 'Ternurines' (MX). 
 
-Built with React Native & Expo, 'my calicos' is availble for devices on both IOS and android. Users can register an account or browse as a guest, search & sort through hundreds of unique figurines, upload photos, interact with the community, and maintain their collections! The app features a stylized user UI designed with the franchise in mind, and is implemented on the frontend with React Native Reusable Component (think ShadCN) + Tailwind. Localizations/translations are in place for English & Spanish 
+Built with React Native & Expo, 'my calicos' is available for devices on both IOS and android. Users can register an account or browse as a guest, search & sort through hundreds of unique figurines, upload photos, interact with the community, and maintain their collections! The app features a stylized user UI designed with the franchise in mind, and is implemented on the frontend with React Native Reusable Component (think ShadCN) + Tailwind. Localizations/translations are in place for English & Spanish 
 speaking countries.
 
 <img src="https://raw.githubusercontent.com/cyrusmcc/icdtea-imgs/refs/heads/main/cyrusmcc/projects/misternuris/Group%20608.png" />

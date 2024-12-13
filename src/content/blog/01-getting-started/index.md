@@ -53,16 +53,16 @@ Customize your social media
 
 export const SOCIALS: Socials = [
   { 
-    NAME: "twitter-x",
-    HREF: "https://twitter.com/markhorn_dev",
+    NAME: "bluesky",
+    HREF: "https://bsky.app/profile/cyrusmcc.com",
   },
   { 
     NAME: "github",
-    HREF: "https://github.com/markhorn-dev"
+    HREF: "https://github.com/cyrusmcc"
   },
   { 
     NAME: "linkedin",
-    HREF: "https://www.linkedin.com/in/markhorn-dev",
+    HREF: "https://www.linkedin.com/in/cyrusmcc/",
   }
 ];
 ```
