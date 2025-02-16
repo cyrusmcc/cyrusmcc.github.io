@@ -37,7 +37,7 @@ Customize your page metadata
 
 export const HOME: Metadata = {
   TITLE: "Home",
-  DESCRIPTION: "Astro Nano is a minimal and lightweight blog and portfolio.",
+  DESCRIPTION: "Cyrus McCormick is a specialized app & web developer, working on creating customized interactive experiences.",
 };
 ```
 
