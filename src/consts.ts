@@ -15,7 +15,7 @@ export const HOME: Metadata = {
 
 export const BLOG: Metadata = {
   TITLE: "Blog",
-  DESCRIPTION: "A collection of articles on topics I am passionate about.",
+  DESCRIPTION: "A collection of technical articles",
 };
 
 export const WORK: Metadata = {
@@ -30,7 +30,11 @@ export const PROJECTS: Metadata = {
 
 export const SOCIALS: Socials = [
   { 
-    NAME: "twitter-x",
+    NAME: "bsky",
+    HREF: "https://twitter.com/icdteas",
+  },
+  { 
+    NAME: "twitter",
     HREF: "https://twitter.com/icdteas",
   },
   { 
