@@ -25,7 +25,9 @@ const { entry } = Astro.props;
       }
       {
         entry.collection === "blog" && entry.data.date && (
-          <div class="text-xs mt-1">{new Date(entry.data.date).toDateString()}</div>
+          <div class="text-xs mt-1">
+            {new Date(entry.data.date).toDateString()}
+          </div>
         )
       }
     </div>
@@ -47,11 +49,13 @@ const { entry } = Astro.props;
       ></polyline>
     </svg>
   </div>
-  {
-    entry.data.imageUrl && (
+
+  <!-- TODO: handle   "errno": -3008 when cant fetch image offline -->
+  <!-- {
+    entry.data?.imageUrl && (
       <div class="rounded-lg h-auto w-full overflow-hidden my-3">
         <Image src={entry.data?.imageUrl} alt="resumed work banner" inferSize />
       </div>
     )
-  }
+  } -->
 </a>
