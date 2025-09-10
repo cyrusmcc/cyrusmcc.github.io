@@ -4,10 +4,6 @@ description: ""
 date: "Aug 28 2025"
 ---
 
-## Generating a million model variations with Three.js
-
-**the problem**
-
 
   <iframe 
       src="http://localhost:5173/embed/fish-showcase" 
@@ -28,7 +24,7 @@ date: "Aug 28 2025"
   - We will apply a shader to the model which will allow us to apply color to the whites of our texture map, while hiding or applying a separate color to the blacks
   - We can apply a base color to the model material itself, then another color to the wrapping texture - if we want a blue fish with orange polkadots we could apply a blue color to the model, and then apply an orange filter to the whites of our texture map
     - Because we assigned different materials to our model when we were creating it, we can apply shaders to each different material belonging to our mesh (model) with Three.js
-    - 
+
 
 
 Loading a model with Three.js
