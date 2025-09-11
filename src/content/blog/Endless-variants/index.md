@@ -1,63 +1,93 @@
 ---
-title: "Generating a million model variations with Three.js"
+title: "Generating a Million Model Variations with Three.js"
 description: ""
 date: "Aug 28 2025"
 ---
 
+<iframe 
+    src="https://webfinz.icdtea.com/embed/fish-showcase" 
+    width="100%" 
+    height="400px" 
+    frameborder="0"
+    border-radius="12px"
+    title="Fish Game Showcase"
+    allowtransparency="true"
+></iframe>
 
-  <iframe 
-      src="http://localhost:5173/embed/fish-showcase" 
+## Working with the Model
+
+To get started, you'll need a 3D model in GLB/GLTF format. I recommend using a base white model, as this provides the most flexibility for applying colors and textures dynamically.
+
+  <!-- <iframe 
+      src="http://localhost:5173/embed/
+  fish-showcase?mode=white" 
       width="100%" 
-      height="500" 
+      height="400px" 
       frameborder="0"
-      title="Fish Game Showcase"
-      allowTransparency="true"
-  ></iframe>
+      title="Fish Game Showcase - 
+  White"
+      allowtransparency="true"
+  ></iframe> -->
 
-**the steps**
-- 3d model, glb/gltf format
-- base white model
-  - If we want to apply separate colors/textures to a specific part of our model, we select those model faces and assign them a different material
-    - For example - my fish model has separate eye material, fin material, upper & lower body materials which allow me to control the color/texture of each piece separately.
-- create a black & white pattern/texture map
-  - This map will overlay or wrap your model
-  - We will apply a shader to the model which will allow us to apply color to the whites of our texture map, while hiding or applying a separate color to the blacks
-  - We can apply a base color to the model material itself, then another color to the wrapping texture - if we want a blue fish with orange polkadots we could apply a blue color to the model, and then apply an orange filter to the whites of our texture map
-    - Because we assigned different materials to our model when we were creating it, we can apply shaders to each different material belonging to our mesh (model) with Three.js
+If you want to apply separate colors or textures to specific parts of your model, you can select those model faces and assign them different materials. For example, my fish model has separate materials for:
+- Eyes
+- Fins  
+- Upper body
+- Lower body
 
+This separation allows me to control the color and texture of each piece independently.
 
+### Loading a Model with Three.js
 
-Loading a model with Three.js
 ```typescript
-    const { scene, nodes } = useGLTF(`/models/fish/${fish.physicalAttributes.model}.glb`);
+const { scene, nodes } = useGLTF(`/models/fish/${fish.physicalAttributes.model}.glb`);
 ```
 
-Creating the patterned material for the upper body of my fish example
+## Texture Mapping
+
+  <!-- <iframe 
+      src="http://localhost:5173/embed/
+  fish-showcase?mode=pattern-mask" 
+      width="100%" 
+      height="400px" 
+      frameborder="0"
+      title="Fish Game Showcase - 
+  Pattern Mask"
+      allowtransparency="true"
+  ></iframe> -->
+
+Texture mapping is the technique we use to apply patterns or details to our model. Here's how it works:
+
+- The texture map overlays or wraps around your model with the pattern you want to use
+- We apply a shader to the model that allows us to apply color to the white areas of our texture map while hiding or applying a separate color to the black areas
+
+<img src="https://github.com/cyrusmcc/icdtea-imgs/blob/main/cyrusmcc/blogs/texturemap.png?raw=true" />
+
+*Example texture maps: Black and white patterns to wrap our model. White areas will receive your pattern color while black areas will show the base color.*
+
+### Creating the Patterned Material
+
+Here's how to create the patterned material for the upper body of my fish example:
+
 ```typescript
-    const fishUpperBodyMaterial = await createTextureMaterial(fish);
+const fishUpperBodyMaterial = await createTextureMaterial(fish);
 ```
 
-We will need to load our texture image files 
+We'll need to load our texture image files and create a shader material:
 
 ```typescript
 export async function createBodyMaterial(
-  baseColorHex: string, patternColorHex: string
+  baseColorHex: string, 
+  patternColorHex: string
 ) {
-
-  const [textureImage, 
-  // maskTexture - I dont think this is actually needed
-  ] = await Promise.all([
-    loadTexture(`/textures/patterns/polkadot-pattern.png`),
-    // loadTexture('/textures/mask.png')
-  ]);
+  const textureImage = await loadTexture(`/textures/patterns/polkadot-pattern.png`);
 
   const material = new THREE.ShaderMaterial({
     uniforms: {
       primaryColor: { value: new THREE.Color(baseColorHex) },
-      patternColor: { value: new THREE.Color(patternCOlorHex) },
+      patternColor: { value: new THREE.Color(patternColorHex) }, 
       patternTexture: { value: textureImage },
-      // maskTexture: { value: maskTexture },
-    } as {baseColorHex: string, patternColorHex: string, textureImage: THREE.Texture},
+    },
     vertexShader: `
       #include <common>
       #include <skinning_pars_vertex>
@@ -81,7 +111,6 @@ export async function createBodyMaterial(
       uniform vec3 primaryColor;
       uniform vec3 patternColor;
       uniform sampler2D patternTexture;
-      uniform sampler2D maskTexture; // maybe I do need this idk
 
       varying vec2 vUv;
       varying vec3 vPosition;
@@ -160,15 +189,15 @@ export async function createBodyMaterial(
       
       void main() {
         // Sample the pattern texture
-        vec4 pattern = texture2D(patternTexture, modifiedUV);
+        vec4 pattern = texture2D(patternTexture, vUv); // Fixed: was modifiedUV
         
-        // Apply the mask for the fish shape
-        vec4 mask = texture2D(maskTexture, vUv);
-  
+        // Use the pattern's red channel as the blend factor
+        float patternValue = pattern.r; // Fixed: was undefined
+        
         // Mix the base color and pattern color based on the pattern value
-        vec3 finalColor = mix(primaryColor, patternColor, patternValue * mask.r);
+        vec3 finalColor = mix(primaryColor, patternColor, patternValue);
         
-        gl_FragColor = vec4(finalColor, 1); // vec3, opacity
+        gl_FragColor = vec4(finalColor, 1.0);
       }
     `,
     side: THREE.DoubleSide,
@@ -178,30 +207,42 @@ export async function createBodyMaterial(
 }
 ```
 
+## Working with Shaders
 
+We utilize a fragment shader to apply separate colors to the contrasting areas in our texture map. Since our texture map is black and white, we can use a mix function to transform these color values into any other colors we desire.
 
-Because I am using solid colors for the remaining parts of my fish, I use a basic shader material for these which is created through a separate function. 
+The process works like this:
+- Apply a base color to the model material itself
+- Apply another color to the texture that wraps around it
+- For example, if you want a blue fish with orange polka dots, you would apply blue as the base color and orange to the white areas of your texture map
 
+Because we assigned different materials to our model during creation, we can apply shaders to each material belonging to our mesh (model) independently with Three.js.
 
-Once we've created all the materials we need, we can traverse through our model's scene and replace the base materials on our model with our shader materials.
+For the remaining parts of my fish that use solid colors, I use a basic shader material created through a separate function.
+
+## Applying the Materials
+
+Once we've created all the materials we need, we can traverse through our model's scene and replace the base materials with our custom shader materials:
 
 ```typescript
-      scene.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-              const meshName = child.name;
-              if (blackOut) {
-                  child.material = eyeMaterial;
-              }
-              else if (meshName === 'Fish_Base') {
-                  child.material = baseMaterial;
-              } else if (meshName === 'Fish_Accent') {
-                  child.material = accentMaterial;
-              } else if (meshName === 'Fish_Black') {
-                  child.material = eyeMaterial;
-              }
-              else if (meshName === 'Fish_Upper') {
-                  child.material = bodyMaterial;
-              }
-          }
-    });  
+scene.traverse((child) => {
+    if (child instanceof THREE.Mesh) {
+        const meshName = child.name;
+        if (blackOut) {
+            child.material = eyeMaterial;
+        }
+        else if (meshName === 'Fish_Base') {
+            child.material = baseMaterial;
+        } else if (meshName === 'Fish_Accent') {
+            child.material = accentMaterial;
+        } else if (meshName === 'Fish_Black') {
+            child.material = eyeMaterial;
+        }
+        else if (meshName === 'Fish_Upper') {
+            child.material = bodyMaterial;
+        }
+    }
+});  
 ```
+
+This approach allows us to generate countless variations of our model by simply changing the color values and texture patterns, creating a virtually infinite number of unique appearances from a single base model.
