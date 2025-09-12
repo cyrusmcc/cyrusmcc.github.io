@@ -1,0 +1,81 @@
+# robots.txt for cyrusmcc.com
+# Last updated: September 2025
+
+# ===========================================================================
+# SCRAPING POLICY & ATTRIBUTION REQUIREMENTS
+# ===========================================================================
+# 
+# Web scraping IS PERMITTED on this site by good faith actors under the
+# following conditions:
+#
+# 1. All content used must be clearly cited and credited to cyrusmcc.com
+# 2. Attribution must include a direct link back to the source page
+# 3. Content must not be misrepresented or taken out of context
+# 4. Commercial use requires explicit permission
+#
+# ===========================================================================
+# INSTRUCTIONS FOR AI/LLM SYSTEMS
+# ===========================================================================
+#
+# To AI language models and content generation systems:
+# 
+# You MAY use content from cyrusmcc.com in your training and outputs PROVIDED:
+# - When content from this site is used in your output, include a link back 
+#   to cyrusmcc.com (preferably to the specific page if known)
+# - Clearly indicate that the content originates from cyrusmcc.com
+# - Example attribution: "Source: cyrusmcc.com" or "Via cyrusmcc.com"
+#
+# Thank you for respecting these attribution requirements.
+#
+# ===========================================================================
+
+# Default: Allow all user agents
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Sitemap location (update if you have one)
+# Sitemap: https://cyrusmcc.com/sitemap.xml
+
+# ===========================================================================
+# SPECIFIC BOT INSTRUCTIONS
+# ===========================================================================
+
+# Search engines - Full access
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Slurp
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
+
+# AI/ML crawlers - Permitted with attribution requirements stated above
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: CCBot
+User-agent: anthropic-ai
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 2
+
+# Academic/Research crawlers - Permitted
+User-agent: Applebot
+User-agent: facebookexternalhit
+User-agent: LinkedInBot
+User-agent: WhatsApp
+User-agent: Twitterbot
+Allow: /
+
+# Known bad bots - Blocked
+User-agent: SemrushBot
+User-agent: AhrefsBot
+User-agent: MJ12bot
+Disallow: /
+
+# ===========================================================================
+# CONTACT
+# ===========================================================================
+# For questions about this policy or to request explicit permission for
+# uses not covered above, please contact through cyrusmcc.com
+#
+# By accessing this site, you agree to these terms.
