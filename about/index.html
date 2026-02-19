@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)"><link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)"><link rel="icon" type="image/x-icon" href="/favicon-light.svg"><meta name="generator" content="Astro v4.16.10"><!-- Font preloads --><link rel="preload" href="/_astro/inter-latin-400-normal.BOOGhInR.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/inter-latin-600-normal.D273HNI0.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-400-normal.CvHVDnm4.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-600-normal.DUWh3m6k.woff2" as="font" type="font/woff2" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://cyrusmcc.com/about/"><!-- Primary Meta Tags --><title>About | Cyrus McCormick</title><meta name="title" content="About | Cyrus McCormick"><meta name="description" content="About Cyrus McCormick - background, experience, and interests."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://cyrusmcc.com/about/"><meta property="og:title" content="About | Cyrus McCormick"><meta property="og:description" content="About Cyrus McCormick - background, experience, and interests."><meta property="og:image" content="https://cyrusmcc.com/nano.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://cyrusmcc.com/about/"><meta property="twitter:title" content="About | Cyrus McCormick"><meta property="twitter:description" content="About Cyrus McCormick - background, experience, and interests."><meta property="twitter:image" content="https://cyrusmcc.com/nano.png"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script>
+  function init() {
+    preloadTheme();
+    onScroll();
+    animate();
+
+    const backToTop = document.getElementById("back-to-top");
+    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+
+    const backToPrev = document.getElementById("back-to-prev");
+    backToPrev?.addEventListener("click", () => window.history.back());
+
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle?.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "light" : "dark");
+      toggleTheme(!isDark);
+    });
+
+    document.addEventListener("scroll", onScroll);
+  }
+
+  function animate() {
+    const animateElements = document.querySelectorAll(".animate");
+
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, index * 150);
+    });
+  }
+
+  function onScroll() {
+    if (window.scrollY > 0) {
+      document.documentElement.classList.add("scrolled");
+    } else {
+      document.documentElement.classList.remove("scrolled");
+    }
+  }
+
+  function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+function toggleTheme(dark) {
+    const css = document.createElement("style");
+
+    css.appendChild(
+      document.createTextNode(
+        `* {
+             -webkit-transition: none !important;
+             -moz-transition: none !important;
+             -o-transition: none !important;
+             -ms-transition: none !important;
+             transition: none !important;
+          }
+        `,
+      )
+    );
+
+    document.head.appendChild(css);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+  window.getComputedStyle(css).opacity;
+    document.head.removeChild(css);
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+
+    if (userTheme === "light" || userTheme === "dark") {
+      toggleTheme(userTheme === "dark");
+    } else {
+      toggleTheme(true);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => init());
+  document.addEventListener("astro:after-swap", () => init());
+  preloadTheme();
+</script><link rel="stylesheet" href="/_astro/about.CVq129yL.css">
+<link rel="stylesheet" href="/_astro/about.CTkEoxiG.css"><script type="module" src="/_astro/hoisted.BR8vG9kO.js"></script></head> <body> <header> <div class="mx-auto px-5 relative z-10 max-w-screen-sm">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Cyrus McCormick </div>  </a> <nav class="flex gap-1"> <a href="/projects" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+projects
+ </a> <span> / </span> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+blog
+ </a> <span> / </span> <a href="/about" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+about
+ </a> </nav> </div>  </div> </header> <main>  <div class="mx-auto px-5 relative z-10 max-w-screen-sm">  <div class="space-y-16"> <div class="animate font-semibold text-black dark:text-white text-xl">
+About
+</div> <section class="animate space-y-4"> <article class="space-y-4"> <p class="animate">
+I am a full stack engineer specializing in shipping complete
+            products for the web & for mobile devices. From initial concept &
+            design to advanced feature implementations, I do it all. I have a
+            passion for creating value, solving problems, and building
+            maintainable & scalable solutions. I am always learning, growing,
+            and working towards a brighter future.
+</p> <p class="animate">
+I've worked with many popular tools such as React, React Native,
+            Vue, and Astro on the frontend, Node in TypeScript and Spring with
+            Java and Kotlin on the backend. I work with relational and
+            non-relational databases. I have shipped projects including
+            full-stack websites, web extensions, and mobile apps for both
+            android and IOS.
+</p> <p class="animate">
+Outside of software development, I enjoy spending time working on my
+<a href="https://cyrus.galeria.pics/" target="_blank" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2" aria-label="My photography portfolio site"> 
+photography
+ </a>
+which I do while traveling (primarily through Latin America), as well
+            as rock-climbing and spending time in the gym.
+</p> </article> </section> <section class="animate space-y-6"> <h2 class="font-semibold text-black dark:text-white">
+Experience
+</h2> <ul class="flex flex-col space-y-8"> <li class="animate"> <div class="text-sm text-black/40 dark:text-white/40"> Aug 2023 -  Current </div> <div class="font-semibold text-black dark:text-white"> Walmart Global Tech </div> <div class="text-sm text-black/60 dark:text-white/50"> Software Engineer </div> <article class="mt-2"> <p>With Walmart I’ve made major contributions to enterprise-scale digital advertising infrastructure, developing a comprehensive adtech platform using Next.js, React, and Redis that manages 50,000+ in-store advertisement screens across 4,700+ store locations nationwide. Built out device management functionality including remote health monitoring, automated firmware updates, and real-time content streaming capabilities, leading to reduced manual intervention and improved operational efficiency for technicians managing digital advertising at scale.</p>
+<p>Previously focused on reliability engineering working with MERN applications dealing with incident management and observability solutions of Walmart’s post purchase (order fulfillment, delivery, return flows). Implemented intelligent monitoring systems using LLM and ServiceNow API integrations leading to a reduction in reporting incident noise by ~80% and streamlined manually monitored categories from ~35 down to a single incident stream, leading to faster issue detection and 24/7 automated incident monitoring/resolution coverage.</p> </article> </li><li class="animate"> <div class="text-sm text-black/40 dark:text-white/40"> Jan 2023 - May 2023 </div> <div class="font-semibold text-black dark:text-white"> Sandia National Laboratories </div> <div class="text-sm text-black/60 dark:text-white/50"> R&amp;D Engineering Intern </div> <article class="mt-2"> <p>Engineered data pipelines using Express.js, Node.js, and MongoDB to process millions of social media data points through web scraping and API integrations, supporting the training of Natural Language Processing models. Developed knowledge transfer tools in Java to streamline data collection from subject matter experts, improving overall data quality and model effectiveness.</p> </article> </li><li class="animate"> <div class="text-sm text-black/40 dark:text-white/40"> May 2022 - Aug 2022 </div> <div class="font-semibold text-black dark:text-white"> Ultramain Systems </div> <div class="text-sm text-black/60 dark:text-white/50"> Software Engineer </div> <article class="mt-2"> <p>Developed and implemented a task tracking system using J2EE, Maven, MariaDB, and Hibernate to enhance developer productivity and visibility across engineering teams. Contributed to enterprise-level maintenance logging software for aerospace clients through code improvements and bug fixes.</p> </article> </li> </ul> </section> <section class="animate space-y-4"> <h2 class="font-semibold text-black dark:text-white">
+Contact
+</h2> <p>
+Reach out on social media or send me an email.
+</p> <ul class="flex flex-wrap gap-x-3 gap-y-1"> <li> <a href="https://twitter.com/icdteas" target="_blank" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2" aria-label="Cyrus McCormick on bsky"> bsky </a> </li><li> <a href="https://twitter.com/icdteas" target="_blank" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2" aria-label="Cyrus McCormick on twitter"> twitter </a> </li><li> <a href="https://github.com/cyrusmcc" target="_blank" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2" aria-label="Cyrus McCormick on github"> github </a> </li><li> <a href="https://www.linkedin.com/in/cyrusmcc/" target="_blank" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2" aria-label="Cyrus McCormick on linkedin"> linkedin </a> </li> <li> <a href="mailto:dev@cyrusmcc.com" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2" aria-label="Email Cyrus McCormick"> dev@cyrusmcc.com </a> </li> </ul> </section> </div>  </div>  </main> <footer class="animate"> <div class="mx-auto px-5 relative z-10 max-w-screen-sm">  <div class="relative"> <div class="absolute right-0 -top-20"> <button id="back-to-top" class="relative group w-fit flex pl-8 pr-3 py-1.5 flex-nowrap rounded border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current rotate-90"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm">
+Back to top
+</div> </button> </div> </div> <div class="flex justify-between items-center"> <div>
+&copy; 2026 | Cyrus McCormick </div> <button id="theme-toggle" aria-label="Toggle theme" class="group size-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-300"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block group-hover:stroke-white transition-colors duration-300 ease-in-out"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="block dark:hidden group-hover:stroke-black transition-colors duration-300 ease-in-out"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> </div>  </div> </footer> </body></html>
