@@ -1,0 +1,123 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@/layouts/PageLayout.astro";
+import Container from "@/components/Container.astro";
+import Link from "@/components/Link.astro";
+import { dateRange } from "@/lib/utils";
+import { ABOUT, SITE, SOCIALS } from "@/consts";
+
+const collection = (await getCollection("work"))
+  .sort(
+    (a, b) =>
+      new Date(b.data.dateStart).valueOf() -
+      new Date(a.data.dateStart).valueOf(),
+  );
+
+const work = await Promise.all(
+  collection.map(async (item) => {
+    const { Content } = await item.render();
+    return { ...item, Content };
+  }),
+);
+---
+
+<PageLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
+  <Container>
+    <div class="space-y-16">
+      <div class="animate font-semibold text-black dark:text-white text-xl">
+        About
+      </div>
+
+      <section class="animate space-y-4">
+        <article class="space-y-4">
+          <p class="animate">
+            I am a full stack engineer specializing in shipping complete
+            products for the web & for mobile devices. From initial concept &
+            design to advanced feature implementations, I do it all. I have a
+            passion for creating value, solving problems, and building
+            maintainable & scalable solutions. I am always learning, growing,
+            and working towards a brighter future.
+          </p>
+          <p class="animate">
+            I've worked with many popular tools such as React, React Native,
+            Vue, and Astro on the frontend, Node in TypeScript and Spring with
+            Java and Kotlin on the backend. I work with relational and
+            non-relational databases. I have shipped projects including
+            full-stack websites, web extensions, and mobile apps for both
+            android and IOS.
+          </p>
+          <p class="animate">
+            Outside of software development, I enjoy spending time working on my
+            <Link
+              href="https://cyrus.galeria.pics/"
+              aria-label="My photography portfolio site"
+              external
+            >
+              photography
+            </Link>
+            which I do while traveling (primarily through Latin America), as well
+            as rock-climbing and spending time in the gym.
+          </p>
+        </article>
+      </section>
+
+      <section class="animate space-y-6">
+        <h2 class="font-semibold text-black dark:text-white">
+          Experience
+        </h2>
+        <ul class="flex flex-col space-y-8">
+          {
+            work.map((entry) => (
+              <li class="animate">
+                <div class="text-sm text-black/40 dark:text-white/40">
+                  {dateRange(entry.data.dateStart, entry.data.dateEnd)}
+                </div>
+                <div class="font-semibold text-black dark:text-white">
+                  {entry.data.company}
+                </div>
+                <div class="text-sm text-black/60 dark:text-white/50">
+                  {entry.data.role}
+                </div>
+                <article class="mt-2">
+                  <entry.Content />
+                </article>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="animate space-y-4">
+        <h2 class="font-semibold text-black dark:text-white">
+          Contact
+        </h2>
+        <p>
+          Reach out on social media or send me an email.
+        </p>
+        <ul class="flex flex-wrap gap-x-3 gap-y-1">
+          {
+            SOCIALS.map((SOCIAL) => (
+              <li>
+                <Link
+                  href={SOCIAL.HREF}
+                  external
+                  aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}
+                >
+                  {SOCIAL.NAME}
+                </Link>
+              </li>
+            ))
+          }
+          <li>
+            <Link
+              href={`mailto:${SITE.EMAIL}`}
+              aria-label={`Email ${SITE.NAME}`}
+            >
+              {SITE.EMAIL}
+            </Link>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </Container>
+</PageLayout>

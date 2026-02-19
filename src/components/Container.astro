@@ -1,7 +1,14 @@
 ---
+type Props = {
+  wide?: boolean;
+};
 
+const { wide = false } = Astro.props;
 ---
 
-<div class="mx-auto max-w-screen-sm px-5">
+<div class:list={[
+  "mx-auto px-5 relative z-10",
+  wide ? "max-w-screen-lg" : "max-w-screen-sm"
+]}>
   <slot />
 </div>

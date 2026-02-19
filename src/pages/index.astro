@@ -2,199 +2,92 @@
 import { getCollection } from "astro:content";
 import Container from "@/components/Container.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
 import ArrowCard from "@/components/ArrowCard.astro";
 import Link from "@/components/Link.astro";
-import { dateRange } from "@/lib/utils";
 import { SITE, HOME, SOCIALS } from "@/consts";
 
 const blog = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const projects = (await getCollection("projects"))
   .filter((project) => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
-
-const allwork = (await getCollection("work"))
-  .sort(
-    (a, b) =>
-      new Date(b.data.dateStart).valueOf() -
-      new Date(a.data.dateStart).valueOf(),
-  )
-  .slice(0, SITE.NUM_WORKS_ON_HOMEPAGE);
-
-const work = await Promise.all(
-  allwork.map(async (item) => {
-    const { Content } = await item.render();
-    return { ...item, Content };
-  }),
-);
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
-  <Container>
-    <h4 class="animate font-semibold text-black dark:text-white">
-      Hi, I'm Cyrus <span class="text-xl">👋🏻</span>
-    </h4>
-    <div class="space-y-16">
-      <section>
-        <article class="space-y-4">
-          <p class="animate">
-            I am a full stack engineer specializing in shipping complete
-            products for the web & for mobile devices. From initial concept &
-            design to advanced feature implementations, I do it all. I have a
-            passion for creating value, solving problems, and building
-            maintainable & scalable solutions. I am always learning, growing,
-            and working towards a brighter future.
+  <Container wide>
+    <div class="flex flex-col lg:flex-row gap-10 lg:gap-12">
+      <!-- Left column: Info + Writing -->
+      <div class="lg:w-[340px] lg:shrink-0 space-y-16">
+        <section class="animate space-y-4">
+          <h1 class="text-3xl font-semibold text-black dark:text-white tracking-tight">
+            Cyrus McCormick
+          </h1>
+          <p class="text-lg text-black/60 dark:text-white/50">
+            Software engineer
           </p>
-          <p class="animate">
-            I've worked with many popular tools such as React, React Native,
-            Vue, and Astro on the frontend, Node in TypeScript and Spring with
-            Java and Kotlin on the backend. I work with relational and
-            non-relational databases. I have shipped projects including
-            full-stack websites, web extensions, and mobile apps for both
-            android and IOS. Check out my recent
-            <Link href="/projects" aria-label="List of my projects">
-              projects
-            </Link> if you want a sample of my works.
-          </p>
-          <p class="animate">
-            Outside of software development, I enjoy spending time working on my
-            <Link
-              href="https://cyrus.galeria.pics/"
-              aria-label="My photography portfolio site"
-              external
-            >
-              photography
-            </Link>
-            which I do while traveling (primarily through Latin America), as well
-            as rock-climbing and spending time in the gym.
-          </p>
-        </article>
-        <ul class="flex flex-wrap gap-2 mt-6">
-          {
-            SOCIALS.map((SOCIAL) => (
-              <li class="flex gap-x-2 text-nowrap">
-                <Link
-                  href={SOCIAL.HREF}
-                  external
-                  aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}
-                >
-                  {SOCIAL.NAME}
-                </Link>
-                {"/"}
-              </li>
-            ))
-          }
-          <li class="line-clamp-1">
-            <Link
-              href={`mailto:${SITE.EMAIL}`}
-              aria-label={`Email ${SITE.NAME}`}
-            >
-              {SITE.EMAIL}
-            </Link>
-          </li>
-        </ul>
-      </section>
+          <ul class="flex flex-wrap gap-x-3 gap-y-1">
+            {
+              SOCIALS.map((SOCIAL) => (
+                <li>
+                  <Link
+                    href={SOCIAL.HREF}
+                    external
+                    aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}
+                  >
+                    {SOCIAL.NAME}
+                  </Link>
+                </li>
+              ))
+            }
+            <li>
+              <Link
+                href={`mailto:${SITE.EMAIL}`}
+                aria-label={`Email ${SITE.NAME}`}
+              >
+                {SITE.EMAIL}
+              </Link>
+            </li>
+          </ul>
+        </section>
 
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Recent projects
-          </h5>
-          <Link href="/projects"> See all projects </Link>
-        </div>
-        <ul class="flex flex-col gap-4">
-          {
-            projects.map((project) => (
-              <li>
-                <ArrowCard entry={project} />
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-      
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">Latest posts</h5>
-          <Link href="/blog"> See all posts </Link>
-        </div>
-        <ul class="flex flex-col gap-4">
-          {
-            blog.map((post) => (
-              <li>
-                <ArrowCard entry={post} />
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Work Experience
-          </h5>
-          <Link href="/work"> See all work </Link>
-        </div>
-        <ul class="flex flex-col space-y-4">
-          {
-            work.map((entry) => (
-              <li>
-                <div class="font-semibold text-black dark:text-white">
-                  {entry.data.company}
-                </div>
-                <div class="flex flex-row gap-2">
-                  <div class="text-sm opacity-75">{entry.data.role}</div>
-                  <div class="text-sm opacity-75">•</div>
-                  <div class="text-sm opacity-75">
-                    {dateRange(entry.data.dateStart, entry.data.dateEnd)}
-                  </div>
-                </div>
-                <article>
-                  <entry.Content />
-                </article>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
+        <section class="animate space-y-6">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl font-semibold text-black dark:text-white">
+              Writing
+            </h2>
+            <Link href="/blog">View all</Link>
+          </div>
+          <ul class="flex flex-col gap-4">
+            {
+              blog.map((post) => (
+                <li>
+                  <ArrowCard entry={post} />
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </div>
 
-      <section class="animate space-y-4">
-        <h5 class="font-semibold text-black dark:text-white">Let's Connect</h5>
-        <article>
-          <p>
-            If you want to get in touch with me about something or just to say
-            hi, reach out on social media or send me an email.
-          </p>
-        </article>
-        <ul class="flex flex-wrap gap-2">
-          {
-            SOCIALS.map((SOCIAL) => (
-              <li class="flex gap-x-2 text-nowrap">
-                <Link
-                  href={SOCIAL.HREF}
-                  external
-                  aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}
-                >
-                  {SOCIAL.NAME}
-                </Link>
-                {"/"}
-              </li>
-            ))
-          }
-          <li class="line-clamp-1">
-            <Link
-              href={`mailto:${SITE.EMAIL}`}
-              aria-label={`Email ${SITE.NAME}`}
-            >
-              {SITE.EMAIL}
-            </Link>
-          </li>
-        </ul>
-      </section>
+      <!-- Right column: Projects grid -->
+      <div class="flex-1 min-w-0">
+        <section class="animate space-y-6">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xl font-semibold text-black dark:text-white">
+              Projects
+            </h2>
+            <Link href="/projects">View all</Link>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {projects.map((project) => (
+              <ProjectCard entry={project} />
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   </Container>
 </PageLayout>

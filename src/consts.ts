@@ -5,7 +5,7 @@ export const SITE: Site = {
   EMAIL: "dev@cyrusmcc.com",
   NUM_POSTS_ON_HOMEPAGE: 3,
   NUM_WORKS_ON_HOMEPAGE: 2,
-  NUM_PROJECTS_ON_HOMEPAGE: 3,
+  NUM_PROJECTS_ON_HOMEPAGE: 4,
 };
 
 export const HOME: Metadata = {
@@ -26,6 +26,11 @@ export const WORK: Metadata = {
 export const PROJECTS: Metadata = {
   TITLE: "Projects",
   DESCRIPTION: "A collection of my projects, with links to repositories and demos.",
+};
+
+export const ABOUT: Metadata = {
+  TITLE: "About",
+  DESCRIPTION: "About Cyrus McCormick - background, experience, and interests.",
 };
 
 export const SOCIALS: Socials = [

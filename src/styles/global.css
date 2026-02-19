@@ -4,11 +4,15 @@
 
 html {
   overflow-y: scroll;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 html.dark {
   color-scheme: dark;
+}
+
+html:not(.dark) {
+  color-scheme: light;
 }
 
 html,
@@ -19,22 +23,36 @@ body {
 body {
   @apply font-sans antialiased;
   @apply flex flex-col;
-  @apply bg-stone-100 dark:bg-stone-900;
-  @apply text-black/50 dark:text-white/75;
+  @apply bg-neutral-50 dark:bg-[#0a0a0a];
+  @apply text-black/50 dark:text-white/60;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+html:not(.dark) body::before {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 }
 
 header {
   @apply fixed top-0 left-0 right-0 z-50 py-5;
-  @apply bg-stone-100/75 dark:bg-stone-900/25;
+  @apply bg-neutral-50/75 dark:bg-[#0a0a0a]/75;
   @apply backdrop-blur-sm saturate-200;
 }
 
 main {
-  @apply flex-1 py-32;
+  @apply flex-1 py-32 relative z-10;
 }
 
 footer {
-  @apply py-5 text-sm;
+  @apply py-5 text-sm relative z-10;
 }
 
 article {
@@ -46,12 +64,12 @@ article {
 @layer utilities {
   article a {
     @apply font-sans text-current underline underline-offset-2;
-    @apply decoration-black/15 dark:decoration-white/30;
+    @apply decoration-black/15 dark:decoration-white/20;
     @apply transition-colors duration-300 ease-in-out;
   }
   article a:hover {
     @apply text-black dark:text-white;
-    @apply decoration-black/25 dark:decoration-white/50;
+    @apply decoration-black/25 dark:decoration-white/40;
   }
 }
 
