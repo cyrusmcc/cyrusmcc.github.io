@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)"><link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)"><link rel="icon" type="image/x-icon" href="/favicon-light.svg"><meta name="generator" content="Astro v4.16.10"><!-- Font preloads --><link rel="preload" href="/_astro/inter-latin-400-normal.BOOGhInR.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/inter-latin-600-normal.D273HNI0.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-400-normal.CvHVDnm4.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-600-normal.DUWh3m6k.woff2" as="font" type="font/woff2" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://cyrusmcc.com/blog/build-a-hobby/"><!-- Primary Meta Tags --><title>Build yourself a hobby | Cyrus McCormick</title><meta name="title" content="Build yourself a hobby | Cyrus McCormick"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://cyrusmcc.com/blog/build-a-hobby/"><meta property="og:title" content="Build yourself a hobby | Cyrus McCormick"><meta property="og:description" content=""><meta property="og:image" content="https://cyrusmcc.com/nano.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://cyrusmcc.com/blog/build-a-hobby/"><meta property="twitter:title" content="Build yourself a hobby | Cyrus McCormick"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://cyrusmcc.com/nano.png"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script>
+  function init() {
+    preloadTheme();
+    onScroll();
+    animate();
+
+    const backToTop = document.getElementById("back-to-top");
+    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+
+    const backToPrev = document.getElementById("back-to-prev");
+    backToPrev?.addEventListener("click", () => window.history.back());
+
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle?.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "light" : "dark");
+      toggleTheme(!isDark);
+    });
+
+    document.addEventListener("scroll", onScroll);
+  }
+
+  function animate() {
+    const animateElements = document.querySelectorAll(".animate");
+
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, index * 150);
+    });
+  }
+
+  function onScroll() {
+    if (window.scrollY > 0) {
+      document.documentElement.classList.add("scrolled");
+    } else {
+      document.documentElement.classList.remove("scrolled");
+    }
+  }
+
+  function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+function toggleTheme(dark) {
+    const css = document.createElement("style");
+
+    css.appendChild(
+      document.createTextNode(
+        `* {
+             -webkit-transition: none !important;
+             -moz-transition: none !important;
+             -o-transition: none !important;
+             -ms-transition: none !important;
+             transition: none !important;
+          }
+        `,
+      )
+    );
+
+    document.head.appendChild(css);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+  window.getComputedStyle(css).opacity;
+    document.head.removeChild(css);
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+
+    if (userTheme === "light" || userTheme === "dark") {
+      toggleTheme(userTheme === "dark");
+    } else {
+      toggleTheme(true);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => init());
+  document.addEventListener("astro:after-swap", () => init());
+  preloadTheme();
+</script><link rel="stylesheet" href="/_astro/about.CVq129yL.css">
+<link rel="stylesheet" href="/_astro/about.CTkEoxiG.css"><script type="module" src="/_astro/hoisted.BR8vG9kO.js"></script></head> <body> <header> <div class="mx-auto px-5 relative z-10 max-w-screen-sm">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Cyrus McCormick </div>  </a> <nav class="flex gap-1"> <a href="/projects" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+projects
+ </a> <span> / </span> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+blog
+ </a> <span> / </span> <a href="/about" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+about
+ </a> </nav> </div>  </div> </header> <main>  <div class="mx-auto px-5 relative z-10 max-w-screen-sm">  <div class="animate"> <a href="/blog" class="relative group w-fit flex pl-7 pr-3 py-1.5 flex-nowrap rounded border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm"> 
+Back to blog
+ </div> </a> </div> <div class="space-y-1 my-10"> <div class="animate flex items-center gap-1.5"> <div class="font-base text-sm"> <time datetime="2025-08-16T05:00:00.000Z"> Aug 16, 2025 </time> </div>
+&bull;
+<div class="font-base text-sm"> 5 min read </div> </div> <div class="animate text-2xl font-semibold text-black dark:text-white"> Build yourself a hobby </div> </div> <article class="animate"> <p><strong>set the scene</strong></p>
+<p>Ok, you’ve got the itch to build a new project - that’s great. You’ve got an idea and you’re ready to roll.</p>
+<p>You’ve been thinking up names for your project, you snatch up a domain, you’ve opened up a new repo, then you spend a week burning the midnight oil fueled by passion and illusions of grandeur. Think of all the money this’ll make, all the people this will reach - and then you realize after throwing together a bunch of code you still need to handle user settings, and OAuth, and payment integrations, and an emailing service, and oh shit this isn’t so fun anymore.</p>
+<p>I just spent 8 hours at work putting together a dashboard to deal with really important <em>metrics</em> that are important to <em>product</em>. Then I get home and now I’m trying to figure out the best way to incorporate analytics into my project when I really just wanted to work on an app for competitive street cat spotting.</p>
+<p>Now I’ve burned myself out, my app has started to become a dumpster fire as I push myself to put together shoddy code just to get this thing out the door, because it’s going to be worth it. And oh shit, nobody’s using it, comments on Reddit are roasting me, and I’ll block this from my brain until the auto-renew on my domain reminds me all over again in a year.</p>
+<p><strong>the why</strong></p>
+<p>Build something for yourself, the cost of entry has never been lower. Pair up with your favorite AI assistant and get going, see what you can throw together in a weekend.</p>
+<p>Who’s your audience? You. What are you into? Ok, build something to support that.</p>
+<p>Your project doesn’t have to be perfect, or even particularly functional - because you are your audience, you’re building to support your own passions, you don’t need to have blisteringly high expectations for the end product, you’re not selling to anyone other than yourself here - it’s a creative outlet, and one that only needs to work for you.</p>
+<p>Share it with others, but when you make it clear that what you’re building is for you and yourself, the pressure to get things right doesn’t need to exist - this is my thing, check it out, oh also I’m not trying to sell this to you.</p>
+<p>Wait, you think it’s cool? Oh, you want to give it a shot? Oh, you might even consider paying money for this? Now I’m motivated!</p>
+<p>Worry about making something that makes you happy. Maybe you share it and it makes others happy too, great, now you’ve built yourself a motivation runway for getting the project off the ground if that’s something that interests you.</p>
+<p><strong>my ‘build yourself hobby’ hobby</strong></p>
+ <iframe src="https://vochogame.webmap.icdtea.com/embed" width="100%" height="400"></iframe>
+<p>While traveling to Mexico I started working on a photography project. Photography has always been a hobby for me—something that’s really just <em>for me</em>. No expectations of recognition from others, no desire to make money from my works, nada. I take a photo, I add it to my portfolio, and that’s it, I’m happy.</p>
+<p>Well, in Mexico I was enchanted by the swarm of Vochos (VW beetles) that plague the streets. 20,000,000 of them made for the Mexican market (1956-2003!!!), and a whole bunch of them are still happily chugging along.</p>
+<p>As I was working on my photo project, I’d walk around the streets hunting for vochos. Sometimes the lighting was poor, a car was blocked by traffic, or I wouldn’t have my camera with me.</p>
+<p>Well I decided to do what I do, I booted up VSC, and I started working on an app to catalog all the buggies I’d see as I walked around. A weekend later and I had an app that was good enough <em>for me</em>, it was jank, it crashed a lot, and it was great.</p>
+<p>I’d spot a Vocho, open up my janky ass app, snap a photo, and add it to a map of Vochos I’ve seen, and I was having a blast in the process.</p>
+<p>I spent a week expanding on the app, adding cute decorative pins, a leveling system, un-jankifyed it a bit, and badabing badaboom. Wait - what had I done? Well, the tool that I had built to support my hobby had ended up becoming my new hobby. I created a game and the intended audience was me.</p>
+<p>Sometimes the app comes up in conversation, and people love it. They ask me if they can play it. “Nope!” Not this time, this one is for me.</p>
+<p><strong>the takeaway</strong></p>
+<p>Just build something fun, build something you want to use, build yourself a hobby, build yourself a game, a tool, a whatever - and don’t worry about anyone else.</p>
+<p>A street cat spotting app, photo of the day game, house plant battle royal, special drawing app, a cafe rankings app for your city, whatever.</p>
+<p>Put something together, be creative, and don’t feel the pressure to get things right for anyone other than yourself, even though you just might!!</p> </article>  </div>  </main> <footer class="animate"> <div class="mx-auto px-5 relative z-10 max-w-screen-sm">  <div class="relative"> <div class="absolute right-0 -top-20"> <button id="back-to-top" class="relative group w-fit flex pl-8 pr-3 py-1.5 flex-nowrap rounded border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current rotate-90"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm">
+Back to top
+</div> </button> </div> </div> <div class="flex justify-between items-center"> <div>
+&copy; 2026 | Cyrus McCormick </div> <button id="theme-toggle" aria-label="Toggle theme" class="group size-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-300"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block group-hover:stroke-white transition-colors duration-300 ease-in-out"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="block dark:hidden group-hover:stroke-black transition-colors duration-300 ease-in-out"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> </div>  </div> </footer> </body></html>

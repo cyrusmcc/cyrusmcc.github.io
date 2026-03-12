@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)"><link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)"><link rel="icon" type="image/x-icon" href="/favicon-light.svg"><meta name="generator" content="Astro v4.16.10"><!-- Font preloads --><link rel="preload" href="/_astro/inter-latin-400-normal.BOOGhInR.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/inter-latin-600-normal.D273HNI0.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-400-normal.CvHVDnm4.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-600-normal.DUWh3m6k.woff2" as="font" type="font/woff2" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://cyrusmcc.com/projects/"><!-- Primary Meta Tags --><title>Projects | Cyrus McCormick</title><meta name="title" content="Projects | Cyrus McCormick"><meta name="description" content="A collection of my projects, with links to repositories and demos."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://cyrusmcc.com/projects/"><meta property="og:title" content="Projects | Cyrus McCormick"><meta property="og:description" content="A collection of my projects, with links to repositories and demos."><meta property="og:image" content="https://cyrusmcc.com/nano.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://cyrusmcc.com/projects/"><meta property="twitter:title" content="Projects | Cyrus McCormick"><meta property="twitter:description" content="A collection of my projects, with links to repositories and demos."><meta property="twitter:image" content="https://cyrusmcc.com/nano.png"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script>
+  function init() {
+    preloadTheme();
+    onScroll();
+    animate();
+
+    const backToTop = document.getElementById("back-to-top");
+    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+
+    const backToPrev = document.getElementById("back-to-prev");
+    backToPrev?.addEventListener("click", () => window.history.back());
+
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle?.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "light" : "dark");
+      toggleTheme(!isDark);
+    });
+
+    document.addEventListener("scroll", onScroll);
+  }
+
+  function animate() {
+    const animateElements = document.querySelectorAll(".animate");
+
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, index * 150);
+    });
+  }
+
+  function onScroll() {
+    if (window.scrollY > 0) {
+      document.documentElement.classList.add("scrolled");
+    } else {
+      document.documentElement.classList.remove("scrolled");
+    }
+  }
+
+  function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+function toggleTheme(dark) {
+    const css = document.createElement("style");
+
+    css.appendChild(
+      document.createTextNode(
+        `* {
+             -webkit-transition: none !important;
+             -moz-transition: none !important;
+             -o-transition: none !important;
+             -ms-transition: none !important;
+             transition: none !important;
+          }
+        `,
+      )
+    );
+
+    document.head.appendChild(css);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+  window.getComputedStyle(css).opacity;
+    document.head.removeChild(css);
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+
+    if (userTheme === "light" || userTheme === "dark") {
+      toggleTheme(userTheme === "dark");
+    } else {
+      toggleTheme(true);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => init());
+  document.addEventListener("astro:after-swap", () => init());
+  preloadTheme();
+</script><link rel="stylesheet" href="/_astro/about.CVq129yL.css">
+<link rel="stylesheet" href="/_astro/about.CTkEoxiG.css"><script type="module" src="/_astro/hoisted.BR8vG9kO.js"></script></head> <body> <header> <div class="mx-auto px-5 relative z-10 max-w-screen-sm">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="font-semibold"> Cyrus McCormick </div>  </a> <nav class="flex gap-1"> <a href="/projects" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+projects
+ </a> <span> / </span> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+blog
+ </a> <span> / </span> <a href="/about" target="_self" class="inline-block decoration-black/15 dark:decoration-white/15 hover:decoration-black/25 hover:dark:decoration-white/40 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+about
+ </a> </nav> </div>  </div> </header> <main>  <div class="mx-auto px-5 relative z-10 max-w-screen-lg">  <div class="space-y-10"> <div class="animate font-semibold text-black dark:text-white text-xl">
+Projects
+</div> <div class="animate grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"> <a href="/projects/clickyfish" class="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#111111] hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 ease-in-out"> <div class="aspect-[16/10] w-full overflow-hidden"> <img src="https://raw.githubusercontent.com/cyrusmcc/icdtea-imgs/refs/heads/main/cyrusmcc/projects/banners/clickyfish.webp" alt="ClickyFish" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy"> </div> <div class="flex flex-col gap-1 p-4"> <h3 class="font-semibold text-black dark:text-white transition-colors duration-300"> ClickyFish </h3> <p class="text-sm text-black/50 dark:text-white/50 line-clamp-2"> Web based Fish collecting &amp; Aquarium building game </p> </div> </a><a href="/projects/vochogame" class="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#111111] hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 ease-in-out"> <div class="aspect-[16/10] w-full overflow-hidden"> <img src="https://raw.githubusercontent.com/cyrusmcc/icdtea-imgs/refs/heads/main/cyrusmcc/projects/banners/vochogame.png" alt="Vocho Game" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy"> </div> <div class="flex flex-col gap-1 p-4"> <h3 class="font-semibold text-black dark:text-white transition-colors duration-300"> Vocho Game </h3> <p class="text-sm text-black/50 dark:text-white/50 line-clamp-2"> Mobile &#39;treasure hunting&#39; esque game </p> </div> </a><a href="/projects/jobboardsimulator" class="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#111111] hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 ease-in-out"> <div class="aspect-[16/10] w-full overflow-hidden"> <img src="https://raw.githubusercontent.com/cyrusmcc/icdtea-imgs/refs/heads/main/cyrusmcc/projects/banners/jobboardsimulator.png" alt="Job Board Simulator" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy"> </div> <div class="flex flex-col gap-1 p-4"> <h3 class="font-semibold text-black dark:text-white transition-colors duration-300"> Job Board Simulator </h3> <p class="text-sm text-black/50 dark:text-white/50 line-clamp-2"> Parody job board </p> </div> </a><a href="/projects/mycalicos" class="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#111111] hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 ease-in-out"> <div class="aspect-[16/10] w-full overflow-hidden"> <img src="https://raw.githubusercontent.com/cyrusmcc/icdtea-imgs/refs/heads/main/cyrusmcc/projects/banners/misternuris.png" alt="my calicos" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy"> </div> <div class="flex flex-col gap-1 p-4"> <h3 class="font-semibold text-black dark:text-white transition-colors duration-300"> my calicos </h3> <p class="text-sm text-black/50 dark:text-white/50 line-clamp-2"> Collector&#39;s app for calico crittter figurines </p> </div> </a><a href="/projects/resumedwork" class="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#111111] hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 ease-in-out"> <div class="aspect-[16/10] w-full overflow-hidden"> <img src="https://raw.githubusercontent.com/cyrusmcc/icdtea-imgs/refs/heads/main/cyrusmcc/projects/banners/resumedwork.png" alt="Resumed.work" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy"> </div> <div class="flex flex-col gap-1 p-4"> <h3 class="font-semibold text-black dark:text-white transition-colors duration-300"> Resumed.work </h3> <p class="text-sm text-black/50 dark:text-white/50 line-clamp-2"> Job search platform offering advanced resume builder &amp; application tracking </p> </div> </a> </div> </div>  </div>  </main> <footer class="animate"> <div class="mx-auto px-5 relative z-10 max-w-screen-sm">  <div class="relative"> <div class="absolute right-0 -top-20"> <button id="back-to-top" class="relative group w-fit flex pl-8 pr-3 py-1.5 flex-nowrap rounded border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current rotate-90"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm">
+Back to top
+</div> </button> </div> </div> <div class="flex justify-between items-center"> <div>
+&copy; 2026 | Cyrus McCormick </div> <button id="theme-toggle" aria-label="Toggle theme" class="group size-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-300"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block group-hover:stroke-white transition-colors duration-300 ease-in-out"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="block dark:hidden group-hover:stroke-black transition-colors duration-300 ease-in-out"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> </div>  </div> </footer> </body></html>
