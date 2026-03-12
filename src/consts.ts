@@ -34,14 +34,14 @@ export const ABOUT: Metadata = {
 };
 
 export const SOCIALS: Socials = [
-  { 
-    NAME: "bsky",
-    HREF: "https://twitter.com/icdteas",
-  },
-  { 
-    NAME: "twitter",
-    HREF: "https://twitter.com/icdteas",
-  },
+  // { 
+  //   NAME: "bsky",
+  //   HREF: "https://twitter.com/icdteas",
+  // },
+  // { 
+  //   NAME: "twitter",
+  //   HREF: "https://twitter.com/icdteas",
+  // },
   { 
     NAME: "github",
     HREF: "https://github.com/cyrusmcc"
